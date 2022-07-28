@@ -1,6 +1,6 @@
 extern crate libc;
 
-use std::sync::{Once, ONCE_INIT};
+use std::sync::{Once};
 
 pub mod db;
 pub mod engine;
@@ -16,7 +16,7 @@ pub use error::ClamError;
 /// This must be called once per process. This is safe to call multiple times.
 pub fn initialize() -> Result<(), ClamError> {
     // the cl_init implementation isn't thread-safe, which is painful for tests
-    static ONCE: Once = ONCE_INIT;
+    static ONCE: Once = Once::new();
     static mut RESULT: ffi::cl_error = ffi::cl_error::CL_SUCCESS;
     unsafe {
         ONCE.call_once(|| {
