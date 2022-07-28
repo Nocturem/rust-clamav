@@ -7,7 +7,7 @@ pub const CL_INIT_DEFAULT: u32 = 0x0;
 pub type cl_engine = c_void;
 
 // :libclamav.so.7 as opposed to clamav as libclamav.so may not exist
-#[link(name = ":libclamav.so.7")]
+#[link(name = ":libclamav.so.9")]
 extern "C" {
     pub fn cl_init(initOptions: c_uint) -> cl_error;
     pub fn cl_initialize_crypto() -> c_int;
