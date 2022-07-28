@@ -1,5 +1,4 @@
 use std::ffi::CStr;
-use std::str;
 
 use ffi;
 
@@ -19,12 +18,12 @@ pub fn flevel() -> u32 {
 /// ```
 pub fn version() -> String {
     unsafe {
-        let ptr = ffi::cl_retver();
-        let bytes = CStr::from_ptr(ptr).to_bytes();
-        str::from_utf8(bytes)
-            .ok()
+        return {
+            CStr::from_ptr(ffi::cl_retver())
+            .to_str()
             .expect("Invalid UTF8 string")
-            .to_string()
+            .to_owned()
+        };
     }
 }
 
