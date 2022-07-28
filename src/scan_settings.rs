@@ -118,7 +118,7 @@ impl fmt::Display for ScanSettings {
         if self.settings & ffi::CL_SCAN_INTERNAL_COLLECT_SHA == ffi::CL_SCAN_INTERNAL_COLLECT_SHA {
             flags.push_str("CL_SCAN_INTERNAL_COLLECT_SHA ");
         }
-        write!(f, "{:#X}: {}", self.settings, flags.trim_right())
+        write!(f, "{:#X}: {}", self.settings, flags.trim_end())
     }
 }
 
